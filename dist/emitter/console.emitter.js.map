@@ -1,0 +1,1 @@
+{"version":3,"file":"console.emitter.js","sourceRoot":"","sources":["../../src/emitter/console.emitter.ts"],"names":[],"mappings":";;;AAGA,qCAAqC;AACrC,MAAa,cAAc;IACzB;QACE,EAAE;IACJ,CAAC;IAED,QAAQ;QACN,EAAE;IACJ,CAAC;IAED,KAAK,CAAC,IAAI,CAAC,KAAqC;QAC9C,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC,SAAS,CAAC,KAAK,EAAE,IAAI,EAAE,CAAC,CAAC,CAAC,CAAC;IAC9C,CAAC;CACF;AAZD,wCAYC"}
