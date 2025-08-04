@@ -49,6 +49,15 @@ export default class XraySpanExporter implements SpanExporter {
     private readonly indexedAttributes: string[] = [],
   ) {
     //
+    if (process.env.AWS_LAMBDA_FUNCTION_NAME) {
+      diag.info('xray.exporter.constructor using UDPDaemonSegmentEmitter', {
+        AWS_LAMBDA_FUNCTION_NAME: process.env.AWS_LAMBDA_FUNCTION_NAME,
+      });
+    } else {
+      diag.info('xray.exporter.constructor using SDKBasedSegmentEmitter', {
+        AWS_REGION: process.env.AWS_REGION,
+      });
+    }
   }
 
   export(spans: ReadableSpan[], cb: (result: ExportResult) => void) {
@@ -92,6 +101,10 @@ export default class XraySpanExporter implements SpanExporter {
         .then(() => {
           // eslint-disable-next-line testing-library/no-debugging-utils
           diag.debug(`Sent ${spans.length} spans to X-Ray.`);
+          // eslint-disable-next-line testing-library/no-debugging-utils
+          diag.debug('xray.exporter.export', {
+            trace: JSON.stringify(trace, null, 2),
+          });
           cb({ code: ExportResultCode.SUCCESS });
         })
         .catch((err) => {
