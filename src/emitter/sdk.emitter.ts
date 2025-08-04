@@ -21,6 +21,9 @@ export class SDKBasedSegmentEmitter implements SegmentEmitter {
       }),
     );
 
+    // eslint-disable-next-line testing-library/no-debugging-utils
+    diag.debug('xRayClient.send', { result: JSON.stringify(result, null, 2) });
+
     if (result.UnprocessedTraceSegments?.length) {
       const upCnt = result.UnprocessedTraceSegments.length || 0;
       diag.warn(`${upCnt} couldn't be processed.`);
